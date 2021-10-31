@@ -53,18 +53,43 @@ function twoNumberSum(array, targetSum) {
   return [];
 }
 
+// My solution:
+function twoNumberSum(array, targetSum) {
+  const nums = {};
+  // populate empty object/hash
+  for (let i = 0; i < array.length; i++) {
+    nums[array[i]] = true;
+  }
+  // console.log(nums); // { '4': true, '6': true }
+  // let all_keys = Object.keys(nums); //[ '4','6']
+  for (let i = 0; i < array.length - 1; i++) {
+    let currentNum = array[i];  // 4
+    let difference = targetSum - currentNum; // (10-4) = 6
+
+    // check if difference is in object/hash as a key (without repetition)
+    if ((difference in nums) && (difference !== currentNum)) {
+      return [currentNum, difference]
+    }
+  }
+  return [];
+}
+// console.log(typeof(difference));
+// console.log(nums['1']);  // true
+// console.log(nums.hasOwnProperty(difference));  //true or false
+
+
 
 function twoNumberSum(array, targetSum) {
   // O(n) time, O(n) space using Hashtable
   // using hashtable, where I compare (targetSum - currentNumber) (y)
   // if that (y) number is in hashtable than it's a result
   // otherwise we put it into hashtable with some value e.x.: true
-  nums = {};
+  const nums = {};
 
   for (let i = 0; i < array.length - 1; i++) {
       let currentNumber = array[i];
-      // console.log(currentNumber);
 
+      // Look for another number in array different from currentNum (10-11) => -1
       if (array.includes(targetSum - currentNumber) && (currentNumber !== (targetSum - currentNumber))) {
           return [currentNumber, targetSum - currentNumber]
       } else {
