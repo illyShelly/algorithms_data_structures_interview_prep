@@ -54,6 +54,26 @@ function twoNumberSum(array, targetSum) {
 }
 
 
+function twoNumberSum(array, targetSum) {
+  // O(n) time, O(n) space using Hashtable
+  // using hashtable, where I compare (targetSum - currentNumber) (y)
+  // if that (y) number is in hashtable than it's a result
+  // otherwise we put it into hashtable with some value e.x.: true
+  nums = {};
+
+  for (let i = 0; i < array.length - 1; i++) {
+      let currentNumber = array[i];
+      // console.log(currentNumber);
+
+      if (array.includes(targetSum - currentNumber) && (currentNumber !== (targetSum - currentNumber))) {
+          return [currentNumber, targetSum - currentNumber]
+      } else {
+          nums[currentNumber] = true;
+      }
+  }
+  return [];
+}
+
 // Write whatever you want here.
 //   [1, 2, 3] -> 3 length;
 //   i=0 -> j=1; j=2; j=3...;
